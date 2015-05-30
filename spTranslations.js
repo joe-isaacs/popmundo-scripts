@@ -1,3 +1,12 @@
+// ==UserScript==
+// @name            spTranslations: a library for Joe's Speedcalling
+// @namespace       http://popmundo-diaries.com/
+// Author	    Joe Isaacs CharId #3248185 <joe.isaacs.pm@gmail.com>
+// @description     A library to be used with Joe's SpeedCalling for Popmundo
+// @version         1.0
+// ==/UserScript==
+
+
 function spGetTranslations( value )
 {
     switch( value ){

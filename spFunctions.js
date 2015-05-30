@@ -1,4 +1,11 @@
-// Used to hold the callings page
+// ==UserScript==
+// @name            spFunctions: a library for Joe's Speedcalling
+// @namespace       http://popmundo-diaries.com/
+// Author	    Joe Isaacs CharId #3248185 <joe.isaacs.pm@gmail.com>
+// @description     A library to be used with Joe's SpeedCalling for Popmundo
+// @version         1.0
+// ==/UserScript==
+
 var _gwCalling = null;
 var _gwAuthor = null;
 
@@ -16,6 +23,7 @@ function spStoreValue( mainId, charId, cbbId )
     window.localStorage.setItem( mainId, JSON.stringify( storedValues ) );
 }
 
+// Calls everyone in the contact list
 function spCallEveryone( mainId )
 {
     itemListId = 1;
@@ -51,6 +59,7 @@ function spCallEveryone( mainId )
     }
 }
 
+// Create a contact Private Message to the author of the script
 function contactAuthor()
 {
     _gwAuthor = window.open( '', 'gexAuthor', '' );
