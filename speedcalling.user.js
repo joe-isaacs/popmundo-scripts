@@ -1,7 +1,8 @@
 // ==UserScript==
 // @name            Joe's SpeedCalling for Popmundo
-// @namespace       popmundoJoe3248185
-// @description     Calls everyone in your contact list
+// @namespace       http://popmundo-diaries.com/
+// @Author	    Joe Isaacs CharId #3248185 <joe.isaacs.pm@gmail.com>
+// @description     Calls everyone in Popmundo character contact list. Any problems, please contact Joe Isaacs (http://www.popmundo.com/World/Popmundo.aspx/Character/3248185)
 // @version         1.0
 // @include         http://*.popmundo.com/World/Popmundo.aspx/Character/AddressBook
 // @include         http://*.popmundo.com/World/Popmundo.aspx/Interact/Phone/*
@@ -67,7 +68,7 @@ if( _urlCurrent.match( /\/World\/Popmundo.aspx\/Character\/AddressBook/g ) ) {
     addCallSelects();
 }
 
-if( _urlCurrent.match( /\/World\/Popmundo.aspx\/Interact\/Phone/g ) ) {
+if( _urlCurrent.match( /.*#toCall[0-9]+/g ) ) {
     executeOnPage_Contact();
 }
 
@@ -205,8 +206,6 @@ function executeOnPage_Contact()
 {
     //Exits if not to be used by this script
     var tmpLocation = window.location.href;
-    if( tmpLocation.indexOf( "#toCall" ) < 5 )
-	return;
 
     //Gets current char Id
     tmpIdCurrentChar = jisQuery( '.idHolder' ).eq( 1 ).html();
