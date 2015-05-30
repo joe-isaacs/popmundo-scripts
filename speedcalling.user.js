@@ -6,8 +6,8 @@
 // @version         1.0
 // @include         http://*.popmundo.com/World/Popmundo.aspx/Character/AddressBook
 // @include         http://*.popmundo.com/World/Popmundo.aspx/Interact/Phone/*
-// @require         https://gist.github.com/joe-isaacs/60c52a170bfdb53af66a/raw/spFunctions.js
-// @require         https://gist.github.com/joe-isaacs/25621ef67f949ca9515c/raw/spTranslations.js
+// @require         https://greasyfork.org/scripts/10151-spfunctions/code/spFunctions.js
+// @require         https://greasyfork.org/scripts/10153-sptranslations/code/spTranslations.js
 // @require         https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
 // @grant           GM_info
 // ==/UserScript==
@@ -18,8 +18,8 @@ var jisQuery = jQuery.noConflict();
 
 // Append files array
 var _appendJsFiles = [
-    "https://gist.github.com/joe-isaacs/60c52a170bfdb53af66a/raw/spFunctions.js",
-    "https://gist.github.com/joe-isaacs/25621ef67f949ca9515c/raw/spTranslations.js"
+    "https://greasyfork.org/scripts/10151-spfunctions/code/spFunctions.js",
+    "https://greasyfork.org/scripts/10153-sptranslations/code/spTranslations.js"
 ];
 // Translation labels object
 var _labels = null;
