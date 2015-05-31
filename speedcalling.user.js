@@ -34,7 +34,7 @@ var _idCurrentChar = 0;
 var _idStorage = '_GEX_MAIN_ID_';
 
 // Current URL
-var _urlCurrent = window.location.pathname;
+var _urlCurrent = window.location.href;
 
 // Url to make the calls
 var _urlToCall = '/World/Popmundo.aspx/Interact/Phone/';
