@@ -42,6 +42,9 @@ var _urlToCall = '/World/Popmundo.aspx/Interact/Phone/';
 // Url to mark the page as usable by this script
 var _urlToCall_Token = '#toCall';
 
+// Character ID keys
+var _keys = { };
+
 // Array with runtimes values
 var _valuesRunTime = { };
 
@@ -62,13 +65,13 @@ getIdMain();
 getLabels();
 
 // Handles the code necessary for the addressbook page
-if( _urlCurrent.match( /\/World\/Popmundo.aspx\/Character\/AddressBook/g ) ) {
+if( _urlCurrent.match( /\/World\/Popmundo.aspx\/Character\/AddressBook/g ) ){
     addCallButton();
     loadValues();
     addCallSelects();
 }
 
-if( _urlCurrent.match( /.*#toCall[0-9]+/g ) ) {
+if( _urlCurrent.match( /.*#toCall[0-9]+/g ) ){
     executeOnPage_Contact();
 }
 
@@ -78,11 +81,11 @@ if( _urlCurrent.match( /.*#toCall[0-9]+/g ) ) {
 // Links an external JS Script to the Popmundo page
 function appendJsFiles( urlJavascript )
 {
-    for( i = 0; i < _appendJsFiles.length; i++ ) {
-	var script = document.createElement( "script" );
-	script.type = "text/javascript";
-	script.src = _appendJsFiles[i];
-	jisQuery( "head" ).append( script );
+    for( i = 0; i < _appendJsFiles.length; i++ ){
+        var script = document.createElement( "script" );
+        script.type = "text/javascript";
+        script.src = _appendJsFiles[i];
+        jisQuery( "head" ).append( script );
     }
 }
 
@@ -130,30 +133,38 @@ function addCallButton()
     jisQuery( objTr ).insertAfter( 'thead' );
 }
 
+// Finds all character IDs
+function getKeys()
+{
+    //Loads all current contacts (existant in the links)
+    jisQuery( "a[id^='ctl00_cphLeftColumn_ctl00_repAddressBook_ctl'][id$=_lnkCharacter]" )
+        .each( function()
+        {
+            _keys.push( getIdFromUrl( jisQuery( this ).attr( 'href' ) ) );
+        } );
+}
+
 //Loads all contact entries values into memory and updates localStorage
 function loadValues()
 {
     //Loads all current contacts (existant in the links)
-    jisQuery( "a[id^='ctl00_cphLeftColumn_ctl00_repAddressBook_ctl'][id$=_lnkCharacter]" )
-	.each( function()
-	{
-	    var key = getIdFromUrl( jisQuery( this ).attr( 'href' ) );
-	    _valuesRunTime[key] = _valueDefault;
-	} );
+    for( i = 0; i < _keys.length; i++ ){
+        _valuesRunTime[ _keys[ i ] ] = _valueDefault;
+    }
 
     //Updates the localStorage if not present
-    if( window.localStorage.getItem( _idStorage ) === null ) {
-	window.localStorage.setItem( _idStorage, JSON.stringify( _valuesRunTime ) );
-	_valuesStorage = _valuesRunTime;
-    } else {
-	_valuesStorage = JSON.parse( window.localStorage.getItem( _idStorage ) );
+    if( window.localStorage.getItem( _idStorage ) === null ){
+        window.localStorage.setItem( _idStorage, JSON.stringify( _valuesRunTime ) );
+        _valuesStorage = _valuesRunTime;
+    } else{
+        _valuesStorage = JSON.parse( window.localStorage.getItem( _idStorage ) );
     }
 
     //Loads stored values into runtime values
-    for( var key in _valuesRunTime ) {
-	if( typeof ( _valuesStorage[key] ) != 'undefined' ) {
-	    _valuesRunTime[key] = _valuesStorage[key];
-	}
+    for( i = 0; i < _keys.length; i++ ){
+        if( typeof ( _valuesStorage[ _keys[ i ] ] ) !== 'undefined' ){
+            _valuesRunTime[ _keys[ i ] ] = _valuesStorage[ _keys[ i ] ];
+        }
     }
 
     //Saves the localStorage
@@ -169,16 +180,16 @@ function getCallSelect( )
     objSelect.name = objSelect.id;
     objSelect.setAttribute( "onchange", "spStoreValue( '" + _idStorage + "', '" + _idCurrentChar + "', '" + objSelect.id + "' )" );
     objSelect.style = "display:block";
-    for( var i = 0; i < _valueCalls.length; i++ ) {
-	var objOption = document.createElement( "option" );
-	objOption.value = _valueCalls[i];
-	objOption.text = _labels[ _valueCalls[i] ];
+    for( var i = 0; i < _valueCalls.length; i++ ){
+        var objOption = document.createElement( "option" );
+        objOption.value = _valueCalls[i];
+        objOption.text = _labels[ _valueCalls[i] ];
 
-	if( _valuesRunTime[_idCurrentChar] == _valueCalls[i] ) {
-	    objOption.setAttribute( "selected", "selected" );
-	}
+        if( _valuesRunTime[_idCurrentChar] === _valueCalls[i] ){
+            objOption.setAttribute( "selected", "selected" );
+        }
 
-	objSelect.appendChild( objOption );
+        objSelect.appendChild( objOption );
     }
 
     return objSelect;
@@ -188,17 +199,17 @@ function getCallSelect( )
 function addCallSelects()
 {
     jisQuery( "a[id^='ctl00_cphLeftColumn_ctl00_repAddressBook_ctl'][id$=_lnkCharacter]" )
-	.each( function()
-	{
+        .each( function()
+        {
 
-	    var objId = jisQuery( this ).attr( 'id' );
-	    _idCurrentChar = getIdFromUrl( jisQuery( this ).attr( 'href' ) );
-	    jisQuery( this ).attr( 'href', _urlToCall + _idCurrentChar + _urlToCall_Token + _idMainChar );
-	    jisQuery( this ).attr( 'target', '_BLANK' );
-	    var objSelect = getCallSelect();
-	    jisQuery( objSelect ).insertAfter( "a[id^='" + objId + "']" );
+            var objId = jisQuery( this ).attr( 'id' );
+            _idCurrentChar = getIdFromUrl( jisQuery( this ).attr( 'href' ) );
+            jisQuery( this ).attr( 'href', _urlToCall + _idCurrentChar + _urlToCall_Token + _idMainChar );
+            jisQuery( this ).attr( 'target', '_BLANK' );
+            var objSelect = getCallSelect();
+            jisQuery( objSelect ).insertAfter( "a[id^='" + objId + "']" );
 
-	} );
+        } );
 }
 
 // Makes the call
@@ -213,15 +224,15 @@ function executeOnPage_Contact()
     //Calls current char if activated
     var tmpAction = 9999;
     jisQuery( "select[id='ctl00_cphTopColumn_ctl00_ddlInteractionTypes']" )
-	.each( function()
-	{
-	    _valuesStorage = JSON.parse( window.localStorage.getItem( _idStorage ) );
-	    tmpAction = _valuesStorage[tmpIdCurrentChar];
-	} );
+        .each( function()
+        {
+            _valuesStorage = JSON.parse( window.localStorage.getItem( _idStorage ) );
+            tmpAction = _valuesStorage[tmpIdCurrentChar];
+        } );
 
     //Don't call if set to not to call
-    if( tmpAction == 9999 )
-	return;
+    if( tmpAction === 9999 )
+        return;
 
     //Changes the select to the right value
     jisQuery( "select option:selected" ).attr( "selected", false );
