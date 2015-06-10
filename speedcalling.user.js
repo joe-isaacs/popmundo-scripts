@@ -43,7 +43,7 @@ var _urlToCall = '/World/Popmundo.aspx/Interact/Phone/';
 var _urlToCall_Token = '#toCall';
 
 // Character ID keys
-var _keys = { };
+var _keys = [];
 
 // Array with runtimes values
 var _valuesRunTime = { };
@@ -140,13 +140,17 @@ function getKeys()
     jisQuery( "a[id^='ctl00_cphLeftColumn_ctl00_repAddressBook_ctl'][id$=_lnkCharacter]" )
         .each( function()
         {
-            _keys.push( getIdFromUrl( jisQuery( this ).attr( 'href' ) ) );
+            var tmpValue = getIdFromUrl( jisQuery( this ).attr( 'href' ) );
+            _keys.push( tmpValue );
         } );
 }
 
 //Loads all contact entries values into memory and updates localStorage
 function loadValues()
 {
+    
+    getKeys();
+    
     //Loads all current contacts (existant in the links)
     for( i = 0; i < _keys.length; i++ ){
         _valuesRunTime[ _keys[ i ] ] = _valueDefault;
@@ -180,12 +184,14 @@ function getCallSelect( )
     objSelect.name = objSelect.id;
     objSelect.setAttribute( "onchange", "spStoreValue( '" + _idStorage + "', '" + _idCurrentChar + "', '" + objSelect.id + "' )" );
     objSelect.style = "display:block";
+    
+    // Goes trough all possible values and creates the options
     for( var i = 0; i < _valueCalls.length; i++ ){
         var objOption = document.createElement( "option" );
         objOption.value = _valueCalls[i];
         objOption.text = _labels[ _valueCalls[i] ];
 
-        if( _valuesRunTime[_idCurrentChar] === _valueCalls[i] ){
+        if( _valuesRunTime[_idCurrentChar] == _valueCalls[i] ){
             objOption.setAttribute( "selected", "selected" );
         }
 
