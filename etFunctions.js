@@ -19,8 +19,6 @@ function etOnSubmit(){
     return confirm( "You have unsaved content. Are you sure you want to change the article state?" );
 }
 
-jisQuery( '#aspnetForm' ).attr("onsubmit","return (");
-
 
 // Return tomorrow's date at 11:00 time
 function etGetDate(){
