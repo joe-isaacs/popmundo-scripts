@@ -19,7 +19,7 @@ jisQuery( '#ctl00_cphLeftColumn_ctl00_txtText' ).attr("onchange","_etChanged = t
 jisQuery( '#ctl00_cphLeftColumn_ctl00_btnSave' ).attr("onchange","_etChanged = false;");
 jisQuery( 'body' ).attr("onbeforeunload","return etBeforeUnload();");
 jisQuery( '#aspnetForm' ).attr("onsubmit","return etOnSubmit();");
-jisQuery( '#ctl00_cphLeftColumn_ctl00_txtPublishDate' ).attr("onfocus","return etOnSubmit();");
+jisQuery( '#ctl00_cphLeftColumn_ctl00_txtPublishDate' ).attr("onfocus","etChangeDate('ctl00_cphLeftColumn_ctl00_txtPublishDate');");
 
 
 
