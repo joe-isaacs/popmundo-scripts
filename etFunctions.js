@@ -1,3 +1,11 @@
+// ==UserScript==
+// @name            etFunctions: a library for Joe's EditorTools
+// @namespace       http://popmundo-diaries.com/
+// Author	    Joe Isaacs CharId #3248185 <joe.isaacs.pm@gmail.com>
+// @description     A library to be used with Joe's EditorTools for Popmundo
+// @version         1.0
+// ==/UserScript==
+
 // Translation labels object
 var _etChanged = false;
 
