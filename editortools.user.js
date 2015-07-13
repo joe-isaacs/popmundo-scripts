@@ -5,7 +5,6 @@
 // @description     Prevents loss of changes in It's Pop articles
 // @version         1.0
 // @include         http://*.popmundo.com/Special/ED/Popmundo.aspx/EditArticle/*
-// @require         https://greasyfork.org/scripts/10153-sptranslations/code/spTranslations.js
 // @require         https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
 // @grant           GM_info
 // ==/UserScript==
