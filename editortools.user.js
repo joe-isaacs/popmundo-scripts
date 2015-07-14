@@ -21,6 +21,6 @@ jisQuery( "head" ).append( script );
 jisQuery( '#ctl00_cphLeftColumn_ctl00_txtTitle' ).attr("onchange","_etChanged = true;");
 jisQuery( '#ctl00_cphLeftColumn_ctl00_txtPreamble' ).attr("onchange","_etChanged = true;");
 jisQuery( '#ctl00_cphLeftColumn_ctl00_txtText' ).attr("onchange","_etChanged = true;");
-jisQuery( '#ctl00_cphLeftColumn_ctl00_btnSave' ).attr("onchange","_etChanged = false;");
+jisQuery( '#ctl00_cphLeftColumn_ctl00_btnSave' ).attr("onclick","_etChanged = false;");
 jisQuery( '#aspnetForm' ).attr("onsubmit","return etOnSubmit();");
 jisQuery( '#ctl00_cphLeftColumn_ctl00_txtPublishDate' ).attr("onfocus","etChangeDate('ctl00_cphLeftColumn_ctl00_txtPublishDate');");
