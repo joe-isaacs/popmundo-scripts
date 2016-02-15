@@ -52,7 +52,7 @@ var _valuesRunTime = { };
 var _valuesStorage = { };
 
 // Default value for callings
-var _valueDefault = 121;
+var _valueDefault = 24;
 
 // All possible values for calling
 var _valueCalls = Array( 9999, 121, 24, 61, 58, 26, 25, 73, 74 );
