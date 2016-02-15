@@ -128,7 +128,7 @@ function addCallButton()
     var objLabel = document.createElement( "label" );
     objLabel.style = "cursor:pointer";
     objLabel.setAttribute( "onclick", "spContactAuthor()" );
-    objLabel.innerHTML = "<b>&nbsp;&nbsp;&nbsp;Joe's Speecalling for Popmundo</b>";
+    objLabel.innerHTML = "<b>&nbsp;&nbsp;&nbsp;Joe's SpeedCalling for Popmundo</b>";
     objTd.appendChild( objLabel );
     jisQuery( objTr ).insertAfter( 'thead' );
 }
