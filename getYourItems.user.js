@@ -3,7 +3,7 @@
 // @namespace       http://popmundo-diaries.com/
 // @Author	        Joe Isaacs CharId #3248185 <joe.isaacs.pm@gmail.com>
 // @description     Allows you to filter items of a specific character ID In a locale. Any problems, please contact Joe Isaacs (http://www.popmundo.com/World/Popmundo.aspx/Character/3248185)
-// @version         1.0.1
+// @version         1.0.2
 // @include         http://*.popmundo.com/World/Popmundo.aspx/Locale/ItemsEquipment/*
 // @require         https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
 // @grant           GM_info
