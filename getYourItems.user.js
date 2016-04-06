@@ -12,8 +12,6 @@
 //jQuery
 var jisQuery = jQuery.noConflict();
 
-var isChrome = /Chrome/.test(navigator.userAgent);
-
 function getFilterCharacterID() {
     var url = location.href;
     var idx = url.indexOf( "#" ) + 1;
@@ -30,15 +28,8 @@ function getFilterLocaleBaseURL() {
                 url.substring( idxIni, idxLength) + "#";
 }
 
+var jsButton =  "window.location.assign( '" + getFilterLocaleBaseURL() + "' + document.getElementById( 'textFilterID' ).value ); window.location.reload();";               
 
-var jsButton = "";
-if ( isChrome ) {
-    jsButton =  "window.location.reload(); "
-                + "window.location.href = '" + getFilterLocaleBaseURL() + "' + document.getElementById( 'textFilterID' ).value";
-} else {
-    jsButton =  "window.location.reload( '" + getFilterLocaleBaseURL() + "' + document.getElementById( 'textFilterID' ).value ); "
-}
-                
 var addElement =    "<tr class=\"group\"><td id=\"ctl00_cphLeftColumn_ctl00_repItemGroups_ctl01_tdCheckboxFiller\"></td><td colspan=\"2\">Filter Items</td></tr>"
                     + "<tr class=\"even hoverable\"><td id=\"ctl00_cphLeftColumn_ctl00_repItemGroups_ctl01_tdCheckboxFiller\"></td>"
                     + "<td>"
