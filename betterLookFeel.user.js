@@ -6,7 +6,6 @@
 // @version         1.0.0
 // @include         http://*.popmundo.com/World/Popmundo.aspx/*
 // @require         https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
-// @require         http://localhost/hgFunctions.js
 // @grant           GM_info
 // ==/UserScript==
 
